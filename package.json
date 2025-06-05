@@ -1,10 +1,18 @@
 {
-  "name": "bmad-agent-windsurf",
+  "name": "bmad-agent-init",
   "version": "1.0.0",
   "description": "Windsurf integration for BMAD-METHOD - automatic initialization of bmad-agent in projects",
   "main": "src/index.js",
   "bin": {
-    "bmad-agent-init": "bin/bmad-agent-init.js"
+    "bmad-agent-init": "./bin/bmad-agent-init.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "templates/"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

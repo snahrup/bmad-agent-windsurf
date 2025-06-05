@@ -2,7 +2,7 @@
 
 > Effortless initialization of BMAD-METHOD in Windsurf projects
 
-[![NPM Version](https://img.shields.io/badge/npm-1.0.0-blue)](https://www.npmjs.com/package/bmad-agent-windsurf)
+[![NPM Version](https://img.shields.io/badge/npm-1.0.0-blue)](https://www.npmjs.com/package/bmad-agent-init)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## Overview
@@ -13,6 +13,21 @@ BMAD-Agent Windsurf is an initialization tool that streamlines the setup of the 
 
 BMAD-METHOD is a framework for AI-assisted software development that defines a structured approach for AI agents to collaborate in building software. It features specialized personas (Analyst, Architect, Product Manager, etc.) that work together through defined tasks and workflows.
 
+## Installation
+
+To use the BMAD Agent Windsurf initializer, simply run:
+
+```bash
+npx bmad-agent-init
+```
+
+Or install it globally:
+
+```bash
+npm install -g bmad-agent-init
+bmad-agent-init
+```
+
 ## Features
 
 - **One-Command Setup**: Initialize bmad-agent in any project with a single command
@@ -21,14 +36,11 @@ BMAD-METHOD is a framework for AI-assisted software development that defines a s
 - **Windsurf Integration**: Works seamlessly with Windsurf for AI-assisted development
 - **Complete File Structure**: Sets up all necessary directories, configuration files, and templates
 
-## Installation & Usage
-
-### NPX (Recommended)
 
 Run without installation in any project:
 
 ```bash
-npx bmad-agent-windsurf@latest
+npx bmad-agent-init@latest
 ```
 
 ### Global Installation
