@@ -1,5 +1,4 @@
-#!/usr/bin/env node
-require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
+#!/usr/bin/env noderequire('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 6814:
@@ -34776,6 +34775,7 @@ module.exports = {
 
 /***/ 56567:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
 
 const fs = __nccwpck_require__(72136);
 const path = __nccwpck_require__(16928);
