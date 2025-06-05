@@ -1,22 +1,24 @@
 {
   "name": "bmad-agent-init",
-  "version": "1.0.0",
+  "version": "1.0.9",
   "description": "Windsurf integration for BMAD-METHOD - automatic initialization of bmad-agent in projects",
-  "main": "src/index.js",
-  "bin": {
-    "bmad-agent-init": "./bin/bmad-agent-init.js"
-  },
+  "main": "dist/index.js",
+  "bin": "./dist/index.js",
   "files": [
-    "bin/",
-    "src/",
-    "templates/"
+    "dist",
+    "templates",
+    "src",
+    "README.md",
+    "LICENSE"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node bin/bmad-agent-init.js"
+    "start": "node dist/index.js",
+    "build": "ncc build src/init.js -o dist --source-map --license licenses.txt",
+    "prepare": "npm run build"
   },
   "keywords": [
     "bmad",
@@ -26,34 +28,20 @@
     "agent",
     "orchestration"
   ],
-  "author": "",
+  "author": "Your Name",
   "license": "MIT",
   "dependencies": {
-    "@types/express": "^4.17.17",
-    "@types/node": "^20.3.1",
-    "@vitejs/plugin-react": "^4.0.4",
-    "autoprefixer": "^10.4.14",
     "chalk": "^4.1.2",
     "commander": "^9.4.1",
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "fast-glob": "^3.2.12",
     "fs-extra": "^11.1.1",
     "inquirer": "^8.2.5",
-    "ora": "^5.4.1",
-    "postcss": "^8.4.24",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-markdown": "^8.0.7",
-    "react-query": "^3.39.3",
-    "react-syntax-highlighter": "^15.5.0",
-    "tailwindcss": "^3.3.2",
-    "typescript": "^5.0.4",
-    "vite": "^4.3.9",
-    "vite-plugin-node-polyfills": "^0.15.0"
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.1"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "repository": {
     "type": "git",
