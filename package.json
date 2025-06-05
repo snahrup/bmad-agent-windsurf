@@ -1,0 +1,42 @@
+{
+  "name": "bmad-agent-windsurf",
+  "version": "1.0.0",
+  "description": "Windsurf integration for BMAD-METHOD - automatic initialization of bmad-agent in projects",
+  "main": "src/index.js",
+  "bin": {
+    "bmad-agent-init": "bin/bmad-agent-init.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/bmad-agent-init.js"
+  },
+  "keywords": [
+    "bmad",
+    "bmad-method",
+    "windsurf",
+    "ai",
+    "agent",
+    "orchestration"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^9.4.1",
+    "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.1", 
+    "inquirer": "^8.2.5",
+    "ora": "^5.4.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snahrup/bmad-agent-windsurf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/snahrup/bmad-agent-windsurf/issues"
+  },
+  "homepage": "https://github.com/snahrup/bmad-agent-windsurf#readme"
+}
