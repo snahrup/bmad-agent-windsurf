@@ -1,6 +1,6 @@
 {
   "name": "bmad-agent-init",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Windsurf integration for BMAD-METHOD - automatic initialization of bmad-agent in projects",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
