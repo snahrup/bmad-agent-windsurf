@@ -1,4 +1,3 @@
-const { spawnSync } = require('node:child_process');
 const fs = require('fs-extra');
 const os = require('node:os');
 const path = require('node:path');

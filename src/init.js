@@ -2,7 +2,6 @@
 const fs = require('fs-extra');
 const path = require('path');
 const inquirer = require('inquirer');
-const chalk = require('chalk');
 const ora = require('ora');
 const analyzer = require('./analyzer');
 const templateManager = require('./templateManager');
@@ -22,7 +21,6 @@ async function init(options = {}) {
   
   // Check if bmad-agent already exists
   const bmadAgentDir = path.join(targetDir, 'bmad-agent');
-  const windsurfRulesPath = path.join(targetDir, '.windsurfrules');
   
   if (fs.existsSync(bmadAgentDir) && !options.force) {
     const { overwrite } = await inquirer.prompt([{
@@ -71,9 +69,9 @@ async function init(options = {}) {
 /**
  * Creates the directory structure for bmad-agent
  * @param {string} targetDir Target project directory
- * @param {Object} options Command line options
+ * @param {Object} _options Command line options (reserved for future use)
  */
-async function createDirectoryStructure(targetDir, options) {
+async function createDirectoryStructure(targetDir, _options) {
   const bmadAgentDir = path.join(targetDir, 'bmad-agent');
   const directories = [
     path.join(bmadAgentDir, 'checklists'),
