@@ -2,8 +2,10 @@
 
 > Effortless initialization of BMAD-METHOD in Windsurf projects
 
-[![NPM Version](https://img.shields.io/badge/npm-1.0.0-blue)](https://www.npmjs.com/package/bmad-agent-init)
+[![npm version](https://img.shields.io/npm/v/bmad-agent-init.svg)](https://www.npmjs.com/package/bmad-agent-init)
+[![CI](https://github.com/snahrup/bmad-agent-windsurf/actions/workflows/ci.yml/badge.svg)](https://github.com/snahrup/bmad-agent-windsurf/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Node Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
 
 ## Overview
 
@@ -28,14 +30,21 @@ npm install -g bmad-agent-init
 bmad-agent-init
 ```
 
+## Requirements
+
+- **Node.js**: Version 18.0.0 or higher
+
 ## Features
 
 - **One-Command Setup**: Initialize bmad-agent in any project with a single command
+- **Minimal Mode**: Create a lightweight setup with only essential files (`--minimal`)
+- **Project Analysis**: Analyze your project structure and generate a detailed report (`--analyze`)
 - **Intelligent Detection**: Analyzes your codebase to understand your tech stack
-- **Project-Specific Configuration**: Creates a tailored setup for your specific project
+- **Verbose Logging**: Enable detailed debug output with `--verbose`
 - **Windsurf Integration**: Works seamlessly with Windsurf for AI-assisted development
 - **Complete File Structure**: Sets up all necessary directories, configuration files, and templates
 
+## Usage
 
 Run without installation in any project:
 
@@ -46,8 +55,32 @@ npx bmad-agent-init@latest
 ### Global Installation
 
 ```bash
-npm install -g bmad-agent-windsurf
+npm install -g bmad-agent-init
 bmad-agent-init
+```
+
+### Command Options
+
+- `-f, --force` - Force initialization even if bmad-agent directory exists
+- `-a, --analyze` - Analyze project structure and generate a report
+- `-m, --minimal` - Create minimal setup (core files only)
+- `-v, --verbose` - Enable verbose logging for debugging
+- `-p, --path <path>` - Specify target project path (defaults to current directory)
+
+**Examples:**
+
+```bash
+# Initialize with minimal setup
+npx bmad-agent-init --minimal
+
+# Analyze project and generate report
+npx bmad-agent-init --analyze
+
+# Initialize in specific directory with analysis
+npx bmad-agent-init --path ./my-project --analyze
+
+# Force re-initialization with verbose output
+npx bmad-agent-init --force --verbose
 ```
 
 ## What Gets Installed
@@ -92,6 +125,37 @@ your-project/
 5. **Verification**: Ensures all required files are properly installed
 6. **Integration**: Links the bmad-agent with your Windsurf environment
 
+## Minimal Mode
+
+When using the `--minimal` flag, only essential files are copied:
+
+- Core configuration files
+- One default persona (`dev.ide.md`)
+- Essential checklists and tasks
+- Key templates
+
+This is perfect for:
+- Lightweight projects
+- Quick prototyping
+- Learning the BMAD-METHOD
+- Projects with limited scope
+
+## Project Analysis
+
+The `--analyze` flag generates a comprehensive project analysis report:
+
+```bash
+npx bmad-agent-init --analyze
+```
+
+The report includes:
+- Detected tech stack (React, Node.js, TypeScript, etc.)
+- Project structure overview
+- Potential entry points
+- Git repository status
+
+The report is saved to: `bmad-agent/reports/analysis-report.md`
+
 ## Using with Windsurf
 
 After initializing the bmad-agent in your project:
@@ -105,13 +169,14 @@ After initializing the bmad-agent in your project:
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+Quick start for contributors:
+1. Node 18+
+2. `npm ci`
+3. `npm run build`
+4. `npm test`
+5. `npm run lint` and `npm run format` before commits
 
 ## License
 

@@ -4,10 +4,12 @@ npm-debug.log
 yarn-error.log
 package-lock.json
 yarn.lock
+pnpm-debug.log*
 
 # Build output
 dist/
 build/
+.nccache/
 
 # Environment variables
 .env
@@ -33,3 +35,10 @@ build/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Coverage / test
+coverage/
+.tmp/
+
+# Template node_modules (should not be committed)
+templates/**/node_modules/
