@@ -11,6 +11,7 @@ program
   .option('-f, --force', 'Force initialization even if bmad-agent directory exists')
   .option('-a, --analyze', 'Analyze project structure after initialization')
   .option('-m, --minimal', 'Create minimal setup (core files only)')
+  .option('-v, --verbose', 'Enable verbose logging for debugging')
   .option('-p, --path <path>', 'Specify target project path (defaults to current directory)')
   .action((options) => {
     console.log(chalk.blue.bold('\n🚀 BMAD-Agent Windsurf Initializer'));

@@ -4,11 +4,70 @@ const ora = require('ora');
 const fg = require('fast-glob'); // For fast globbing to find files
 
 /**
+ * Formats the analysis report as Markdown
+ * @param {Object} report - Analysis report object
+ * @returns {string} Markdown formatted report
+ */
+function formatReportAsMarkdown(report) {
+  let md = '# BMAD Project Analysis Report\n\n';
+  md += `**Generated:** ${new Date().toISOString()}\n\n`;
+
+  md += '## Tech Stack\n\n';
+  if (report.techStack.length > 0) {
+    md += report.techStack.map((tech) => `- ${tech}`).join('\n') + '\n';
+  } else {
+    md += '_No tech stack detected_\n';
+  }
+
+  md += '\n## Project Structure\n\n';
+  if (report.projectStructure.topLevel && report.projectStructure.topLevel.length > 0) {
+    md += '**Top-level directories and files:**\n\n';
+    md += report.projectStructure.topLevel.map((item) => `- ${item}`).join('\n') + '\n';
+  } else {
+    md += '_No project structure detected_\n';
+  }
+
+  md += '\n## Potential Entry Points\n\n';
+  if (report.potentialEntryPoints.length > 0) {
+    md += report.potentialEntryPoints.map((entry) => `- ${entry}`).join('\n') + '\n';
+  } else {
+    md += '_No entry points detected_\n';
+  }
+
+  md += '\n## Version Control\n\n';
+  md += report.hasGit ? '- Git repository: Yes\n' : '- Git repository: No\n';
+
+  return md;
+}
+
+/**
+ * Writes the analysis report to a file
+ * @param {Object} report - Analysis report object
+ * @param {string} projectDir - Project directory
+ * @param {Object} options - Options (verbose)
+ * @returns {Promise<string>} Path to the written report file
+ */
+async function outputAnalysis(report, projectDir, options = {}) {
+  const outDir = path.join(projectDir, 'bmad-agent', 'reports');
+  await fs.ensureDir(outDir);
+  const outFile = path.join(outDir, 'analysis-report.md');
+  const markdown = formatReportAsMarkdown(report);
+  await fs.writeFile(outFile, markdown, 'utf8');
+
+  if (options.verbose) {
+    console.log(`[analyzer] Analysis report written to: ${outFile}`);
+  }
+
+  return outFile;
+}
+
+/**
  * Analyzes the project structure and tech stack.
  * @param {string} projectDir - The root directory of the project to analyze.
+ * @param {Object} options - Options (verbose)
  * @returns {Promise<Object>} A promise that resolves to an analysis report object.
  */
-async function analyzeProject(projectDir) {
+async function analyzeProject(projectDir, options = {}) {
   const spinner = ora('Analyzing project structure and tech stack...').start();
   const analysisReport = {
     techStack: [],
@@ -64,17 +123,32 @@ async function analyzeProject(projectDir) {
     analysisReport.potentialEntryPoints = commonEntryPoints;
 
     spinner.succeed('Project analysis complete.');
-    // console.log('\nProject Analysis Report:', JSON.stringify(analysisReport, null, 2)); // Optional: log report for debugging
+
+    // Write report to file
+    const reportPath = await outputAnalysis(analysisReport, projectDir, options);
+    const relPath = path.relative(process.cwd(), reportPath);
+
+    // Display summary to console
+    console.log('\n=== Project Analysis Summary ===\n');
+    console.log('Tech Stack:', analysisReport.techStack.join(', ') || 'None detected');
+    console.log('Git Repository:', analysisReport.hasGit ? 'Yes' : 'No');
+    console.log('Entry Points Found:', analysisReport.potentialEntryPoints.length);
+    console.log(`\nFull report: ${relPath}\n`);
+
     return analysisReport;
   } catch (error) {
     spinner.fail('Failed to analyze project.');
-    console.error('Detailed error:', error);
-    // Return a partial or default report instead of throwing, 
+    if (options.verbose) {
+      console.error('Detailed error:', error);
+    }
+    // Return a partial or default report instead of throwing,
     // as analysis failure shouldn't block initialization entirely.
-    return analysisReport; 
+    return analysisReport;
   }
 }
 
 module.exports = {
   analyzeProject,
+  outputAnalysis,
+  formatReportAsMarkdown,
 };

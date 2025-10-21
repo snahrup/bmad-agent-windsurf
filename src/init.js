@@ -56,7 +56,9 @@ async function init(options = {}) {
     // If analyze option is enabled, run code analyzer
     if (options.analyze) {
       spinner.text = 'Analyzing project structure...';
-      await analyzer.analyzeProject(targetDir);
+      spinner.stop(); // Stop spinner to allow clean console output from analyzer
+      await analyzer.analyzeProject(targetDir, options);
+      spinner.start(); // Restart for final success message
     }
     
     spinner.succeed('BMAD-Agent initialization complete!');
